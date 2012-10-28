@@ -86,8 +86,12 @@
       var ouputTopWords = function(topWords){
         $("#words").html("");
         var html = "";
+        var fontSize = 10;
         for(index in topWords){
-          html+= "<li>" + topWords[index]['key'] + " - " + topWords[index]['value'] + "</li>";
+          fontSize = topWords[index]['value'] * 10;
+          if(fontSize > 100) fontSize = 100;
+          if(fontSize < 25) fontSize = 25;
+          html+= "<li style='font-size:" + fontSize + "px;'>" + topWords[index]['key'] + " - " + topWords[index]['value'] + "</li>";
         }
         $("#words").html(html);
       };
@@ -96,6 +100,8 @@
         //.on('paste', handleContent)
         .on('keyup', handleContent)
         //.on('change', handleContent);
+
+      handleContent();
 
       
   });
